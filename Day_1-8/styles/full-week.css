@@ -1,0 +1,83 @@
+header {
+    padding-bottom: 0;
+}
+
+h1 {
+  font-size: 48px;
+  color: rgb(255, 0, 62);
+  margin: 0;
+}
+
+h2 {
+    color: rgb(186, 3, 3);
+    margin: 5px 10px 15px 10px;
+}
+
+#description {
+    margin: 30px 0;
+    font-size: 26px;
+}
+
+ul {
+  list-style: none;
+  max-width: 450px;
+  margin: 45px auto 0 auto;
+  padding: 0;
+}
+
+li {
+  background-color: #fff;
+  margin: 20px 0;
+  padding: 15px 15px;
+  border-radius: 12px;
+  font-size: 1em;
+  box-shadow: 5px 5px;
+  border:rgb(0, 66, 0) 1px solid;
+}
+
+a {
+  background-color: rgb(220, 20, 60);
+  color: #fff;
+  padding: 15px 30px 15px 27.5px;
+  border-radius: 100px;
+  display: inline-block;
+}
+
+a:hover,
+:focus {
+  color: var(--light-orange-color, #fff);
+  text-decoration: none;
+  animation-name: animated-btn-background;
+  animation-duration: 250ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes animated-btn-background {
+  100% {
+    background-color: rgba(220, 20, 60, 0.7);
+  }
+}
+
+#boring-gif {
+  margin-top: 30px;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: var(--green-color, #fff) 1px solid;
+  box-shadow: 0 5px 10px grey;
+  padding:20px;
+  background-color: var(--light-orange-color, #fff);
+}
+
+.highlight-goal {
+    background-color: var(--light-orange-color, #fff);
+  }
+
+.daily-goal {
+    margin: 5px;
+    color: rgb(0, 66, 0);
+}
+
+#todays-goal {
+    background-color: rgb(155, 208, 155);
+}
