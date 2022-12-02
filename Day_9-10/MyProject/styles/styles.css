@@ -80,6 +80,10 @@ main a {
   text-decoration: none;
 }
 
+footer {
+  margin-bottom: 75px;
+}
+
 footer a {
   text-decoration: none;
   background-color: var(--secondary-color, orange);
