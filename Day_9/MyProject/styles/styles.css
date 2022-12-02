@@ -4,7 +4,7 @@ body {
   --primary-color: #7a31dc;
   --secondary-color: rgb(255, 225, 0);
   --text-highlight: #ffeb9f;
-  background-color: #f6f6f6;
+  background-color: #F6E4FF;
   text-align: center;
   font-family: "M PLUS Rounded 1c", sans-serif;
 }
@@ -12,6 +12,7 @@ body {
 h1 {
   font-size: 2.35em;
   color: var(--primary-color, #7a31dc);
+  margin-bottom: 0;
 }
 
 main h2 {
@@ -24,8 +25,8 @@ header {
 }
 
 img#logo {
-  width: 375px;
-  margin-top: -25px;
+  width: 250px;
+  margin: 25px 0 50px;
 }
 
 main {
