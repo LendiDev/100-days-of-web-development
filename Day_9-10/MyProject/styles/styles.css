@@ -69,7 +69,9 @@ main a.link-highlight {
   padding: 0 5px;
 }
 
-main a:hover {
+main a:hover,
+main a:active,
+main a:focus {
   text-decoration: underline;
   color: #7a31dc;
 }
@@ -88,7 +90,9 @@ footer a {
   margin: 15px 0;
 }
 
-footer a:hover {
+footer a:hover,
+footer a:active,
+footer a:focus {
   color: #fff;
   background-color: #7a31dc;
 }
