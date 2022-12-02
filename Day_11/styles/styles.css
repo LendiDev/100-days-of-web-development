@@ -1,0 +1,76 @@
+body {
+  --light-orange-color:rgb(255, 213, 0);
+  --green-color: rgb(0, 66, 0);
+  margin: 50px 20px;
+  text-align: center;
+  background-color: rgb(252, 226, 183);
+  color: rgb(65, 62, 62);
+}
+
+footer {
+  margin-top: 50px;
+}
+
+h1,
+h2 {
+  font-family: "Fira Sans", sans-serif;
+}
+
+h2 {
+  font-size: 17px;
+  margin: 25px 0;
+}
+
+p {
+  font-family: "Fira Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  font-family: "Fira Sans", sans-serif;
+  color: rgb(245, 57, 5);
+}
+
+a:hover,
+:focus {
+  text-decoration: underline;
+  color: crimson;
+}
+
+#todays-challenge {
+  color: rgb(255, 128, 0);
+  font-size: 2.25em;
+  font-weight: bold;
+  margin: 20px 0 50px 0;
+}
+
+img {
+  pointer-events: none;
+}
+
+img#trophy {
+  width: 150px;
+  height: 150px;
+  border: var(--green-color, #fff) 3px solid;
+  background-color: #fff;
+  border-radius: 35%;
+  padding: 20px;
+}
+
+#goal-box {
+  margin: 150px auto 0 auto;
+  background-color: rgb(155, 208, 155);
+  border: var(--green-color, #fff) 3px solid;
+  border-radius: 20px;
+  max-width: 425px;
+  padding: 0 25px;
+  box-shadow: 5px 5px var(--green-color, #fff);
+}
+
+#goal-box img {
+  margin-top: -95px;
+}
+
+#date-text {
+  font-size: 22px;
+}
