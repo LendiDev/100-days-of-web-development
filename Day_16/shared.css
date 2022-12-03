@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;700;900&display=swap");
+
+body {
+  --secondary-color: #D7A21C;
+  font-family: "Rubik", sans-serif;
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 1.5px 3px rgba(0, 0, 0, 0.75);
+}
+
+#header-fluid {
+  margin: 0 20px;
+  padding: 15px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 1024px;
+}
+
+header a {
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+}
+
+header a:hover {
+  color: var(--secondary-color, orange);
+}
+
+nav a:hover {
+  border-bottom: 3px solid var(--secondary-color, orange);
+}
+
+nav #current-page {
+  color: var(--secondary-color, orange);
+  border-bottom: 3px solid var(--secondary-color, orange);
+}
+
+header ul {
+  display: flex;
+}
+
+header li {
+  margin-left: 20px;
+  color: white;
+}
+
+#logo a {
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 2.5px #000;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: -2.5px;
+}
+
+#logo a:hover {
+  color: var(--secondary-color, orange);
+}
