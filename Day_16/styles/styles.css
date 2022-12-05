@@ -1,0 +1,109 @@
+#fullsize-box {
+  height: 600px;
+  background-image: url("/images/road.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  width: 100%;
+}
+
+#fullscreen-box-content {
+  max-width: 600px;
+  min-width: 200px;
+  background-color: rgba(255, 255, 255, 0.77);
+  text-align: center;
+  margin: 20px auto;
+  padding: 40px 0;
+  position: relative;
+  top: 195px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.75);
+}
+
+#fullscreen-box-content h1 {
+  margin: 0;
+  font-size: 32px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+#fullscreen-box-content p {
+  font-size: 18px;
+  text-transform: uppercase;
+  margin: 30px 0;
+  font-weight: 400;
+}
+
+#fullscreen-box-content a {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  background-color: var(--primary-color, #31579b);
+  padding: 10px 25px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+#fullscreen-box-content a:hover {
+  background-color: var(--secondary-color, orange);
+}
+
+.highlights {
+  padding: 20px 0 0 0;
+  background: linear-gradient(
+    180deg,
+    rgba(49, 87, 155, 0.2),
+    rgb(255, 255, 255)
+  );
+}
+
+.highlights h2 {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 40px;
+  text-align: center;
+  color: rgb(55, 55, 55);
+  margin: 20px 0;
+}
+
+.highlights.more {
+  background: white;
+  padding: 0;
+}
+
+#destinations {
+  display: flex;
+  justify-content: space-between;
+  min-width: 360px;
+  max-width: 1440px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.destination {
+  margin: 0 20px;
+  width: 33.3%;
+  text-transform: uppercase;
+}
+
+.destination p {
+  text-align: center;
+  font-size: 18px;
+  color: rgb(108, 108, 108);
+  margin: 15px 0;
+}
+
+.destination img {
+  height: 225px;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  object-fit: cover;
+  object-position: center;
+}
+
+.destination strong {
+  color: var(--secondary-color, #31579b);
+}
