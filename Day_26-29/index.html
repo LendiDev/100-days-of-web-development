@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <h1>All-in-one Demo Form</h1>
+    </header>
+    <main>
+      <form action="/" method="get">
+        <section>
+          <h2>Your personal details</h2>
+          <ul>
+            <li>
+              <label for="username">Your name <span>*</span></label>
+              <input
+                type="text"
+                name="user-name"
+                id="username"
+                placeholder="Enter your name"
+                autofocus
+              />
+            </li>
+            <li>
+              <label for="useremail">Your email address <span>*</span></label>
+              <input type="email" name="user-email" id="useremail" />
+            </li>
+            <li>
+              <label for="userpassword">Your password <span>*</span></label>
+              <input
+                type="password"
+                name="user-password"
+                id="userpassword"
+                minlength="6"
+                required
+              />
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>More details</h2>
+          <ul>
+            <li>
+              <label for="userage">Your age</label>
+              <input type="number" step="1" name="user-age" id="userage" />
+            </li>
+            <li>
+              <label for="birthdate">Your birthdate</label>
+              <input type="date" id="birthdate" name="user-birthdate" />
+            </li>
+            <li>
+              <label for="fav-color">Your favorite color</label>
+              <select name="fav-color" id="fav-color">
+                <option value="">Select...</option>
+                <option value="black">Black</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+              </select>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <label for="message">Your Message</label>
+          <textarea name="message" id="message" col="30" rows="3"></textarea>
+        </section>
+
+        <section>
+          <label for="cv">Your CV <span>*</span></label>
+          <input type="file" name="cv" id="cv" />
+        </section>
+
+        <section>
+          <h2>Verification method</h2>
+          <ul>
+            <li class="form-control-inline">
+              <input type="radio" id="verify-sms" name="verify" value="sms" />
+              <label for="verify-sms">Via text message (SMS)</label>
+            </li>
+            <li class="form-control-inline">
+              <input type="radio" id="verify-call" name="verify" value="call" />
+              <label for="verify-call">Via phone call</label>
+            </li>
+            <li class="form-control-inline">
+              <input
+                type="radio"
+                id="verify-email"
+                name="verify"
+                value="email"
+              />
+              <label for="verify-email">Via an email</label>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>How should we contact you?</h2>
+          <ul>
+            <li class="form-control-inline">
+              <input
+                type="checkbox"
+                id="contact-email"
+                name="contact"
+                value="email"
+              />
+              <label for="contact-email">Contact me via email</label>
+            </li>
+            <li class="form-control-inline">
+              <input
+                type="checkbox"
+                id="contact-phone"
+                name="contact"
+                value="phone"
+              />
+              <label for="contact-phone">Contact me via phone</label>
+            </li>
+          </ul>
+        </section>
+
+        <section id="agree-terms-container">
+          <div class="form-control-inline">
+            <input type="checkbox" id="agree-terms" name="terms" />
+            <label for="agree-terms">Agree to Our Terms & Conditions</label>
+          </div>
+        </section>
+
+        <section>
+          <div id="form-actions-container">
+            <button type="reset">Reset</button>
+            <button type="submit">Submit</button>
+          </div>
+        </section>
+      </form>
+    </main>
+  </body>
+</html>
