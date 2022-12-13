@@ -1,0 +1,27 @@
+@keyframes hide-opacity {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes show-opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-hide-opacity {
+  animation-name: hide-opacity;
+  animation-fill-mode: forwards;
+}
+
+.animate-show-opacity {
+  animation-name: show-opacity;
+  animation-fill-mode: forwards;
+}
