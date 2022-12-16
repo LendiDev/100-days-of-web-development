@@ -1,0 +1,73 @@
+:root {
+  --color-primary: rgb(0, 95, 19);
+  --color-primary-hover: rgb(1, 62, 13);
+  --color-primary-flat-btn-bg-hover: rgb(149, 217, 160);
+  --color-header-text: rgb(255, 255, 255);
+  --color-backdrop: rgb(0, 0, 0, 0.6);
+  --color-border: rgb(200, 200, 200);
+  --color-shadow: rgba(0, 0, 0, 0.2);
+  --color-symbol: rgb(2, 61, 14);
+  --color-hover-grid: rgb(0, 147, 29);
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+  color: rgb(45, 45, 45);
+  background-color: rgb(240, 240, 240);
+}
+
+h1,
+h2 {
+  font-weight: 900;
+}
+
+main {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+#main-header {
+  background-color: var(--color-primary, green);
+  padding: 2rem 5%;
+  color: var(--color-header-text, white);
+  text-align: center;
+}
+
+.btn {
+  text-align: center;
+  font: inherit;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  color: var(--color-header-text, white);
+  background-color: var(--color-primary, green);
+  border: 1px solid var(--color-primary, green);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-flat {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--color-primary, green);
+}
+
+.btn-reset {
+  color: rgb(247, 58, 58);
+}
+
+.btn:hover {
+  background-color: var(--color-primary-hover, darkgreen);
+  border-color: var(--color-primary-hover, darkgreen);
+}
+
+.btn-flat:hover {
+  background-color: var(--color-primary-flat-btn-bg-hover, lightgreen);
+  border-color: transparent;
+}
+
+.btn-reset:hover {
+  background-color: rgba(247, 58, 58, 0.25);
+}

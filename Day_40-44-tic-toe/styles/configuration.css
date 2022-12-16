@@ -1,0 +1,105 @@
+.form-controls h2 {
+  margin: 0;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+.form-controls label {
+  display: block;
+  margin: 0;
+  font-weight: 600;
+}
+
+.form-controls input {
+  font: inherit;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  width: 50%;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.form-controls input:focus {
+  outline-color: var(--color-primary);
+}
+
+.form-controls button {
+  margin-top: 0.5rem;
+}
+
+.form-controls.error input {
+  background-color: rgb(249, 179, 179);
+  border-color: rgb(247, 58, 58);
+  outline-color: rgb(247, 58, 58);
+}
+
+.form-controls.error label {
+  color: rgb(247, 58, 58);
+  font-weight: 900;
+}
+
+#config-form-errors {
+  margin: 0 auto;
+  padding: 0.25rem;
+  color: rgb(247, 58, 58);
+  font-weight: bold;
+  list-style: none;
+  text-align: center;
+  width: 50%;
+}
+
+#config-form-errors li {
+  text-align: left;
+  margin-top: 0.35rem;
+}
+
+#game-config {
+  width: 100%;
+  margin: 2rem auto;
+  text-align: center;
+  padding: 0;
+}
+
+#game-config ol {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 2rem;
+  list-style: none;
+}
+
+#game-config li {
+  width: 50%;
+  box-shadow: 0 2px 4px var(--color-shadow);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+#game-config h2 {
+  margin-top: 0.5rem;
+  padding: 0;
+}
+
+#game-config h3 {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  font-weight: 900;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+#game-config .error {
+  color: rgb(247, 58, 58);
+  display: none;
+}
+
+.player-symbol {
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0.75rem 0;
+  padding: 0;
+  color: var(--color-symbol);
+}
