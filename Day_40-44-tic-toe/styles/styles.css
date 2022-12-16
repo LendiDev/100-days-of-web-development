@@ -54,6 +54,10 @@ main {
   color: var(--color-primary, green);
 }
 
+.btn-reset {
+  color: rgb(247, 58, 58);
+}
+
 .btn:hover {
   background-color: var(--color-primary-hover, darkgreen);
   border-color: var(--color-primary-hover, darkgreen);
@@ -62,4 +66,8 @@ main {
 .btn-flat:hover {
   background-color: var(--color-primary-flat-btn-bg-hover, lightgreen);
   border-color: transparent;
+}
+
+.btn-reset:hover {
+  background-color: rgba(247, 58, 58, 0.25);
 }

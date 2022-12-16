@@ -1,7 +1,6 @@
 #gameplay {
   text-align: center;
-  margin: 3rem 0 5rem 0;
-  /* display: none; */
+  display: none;
 }
 
 #game-over {
@@ -15,6 +14,7 @@
 
 #game-over h2 {
   font-size: 2.25rem;
+  margin: 1rem;
 }
 
 #active-player-name {

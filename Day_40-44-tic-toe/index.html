@@ -15,13 +15,14 @@
     <link rel="stylesheet" href="/styles/overlays.css" />
     <link rel="stylesheet" href="/styles/configuration.css" />
     <link rel="stylesheet" href="/styles/gameplay.css" />
-    <link rel="stylesheet" href="/styles/animations.css">
+    <link rel="stylesheet" href="/styles/animations.css" />
+    <script src="/scripts/utils.js" defer></script>
     <script src="/scripts/animations.js" defer></script>
     <script src="/scripts/config.js" defer></script>
     <script src="/scripts/gameplay.js" defer></script>
     <script src="/scripts/app.js" defer></script>
   </head>
-  <body> 
+  <body>
     <div id="backdrop"></div>
     <header id="main-header">
       <h1>Play Tic Tac Toe</h1>
@@ -31,16 +32,44 @@
     </header>
     <main>
       <aside class="modal" id="player-config-overlay">
-        <form class="form-controls">
+        <form id="form-edit-player" class="form-controls">
           <h2>Choose your name</h2>
           <div>
             <label for="player-name">Player name</label>
-            <input type="text" name="player-name" id="player-name-input" autocomplete="off"/>
+            <input
+              type="text"
+              name="player-name"
+              id="player-name-input"
+              autocomplete="off"
+              maxlength="20"
+            />
           </div>
           <ul id="config-form-errors"></ul>
           <div>
-            <button type="reset" class="btn btn-flat" id="close-player-config-btn">Cancel</button>
+            <button
+              type="reset"
+              class="btn btn-flat"
+              id="close-player-config-btn"
+            >
+              Cancel
+            </button>
             <button type="submit" class="btn">Save</button>
+          </div>
+        </form>
+      </aside>
+      <aside class="modal" id="player-reset-overlay">
+        <form id="form-reset-player" class="form-controls">
+          <h2>Are you sure you want to reset the player's name?</h2>
+          <p>This will result in the reset of the current game.</p>
+          <div>
+            <button
+              type="reset"
+              class="btn btn-flat"
+              id="close-player-reset-btn"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn">Yes</button>
           </div>
         </form>
       </aside>
@@ -49,21 +78,51 @@
           <li>
             <article id="player-1-data">
               <h2>Player 1</h2>
-              <h3>PLAYER NAME 1</h3>
+              <h3>-</h3>
               <p class="player-symbol">X</p>
-              <button class="btn btn-flat" id="edit-player-1-btn" data-playerid="1">Edit</button>
+              <button
+                class="btn btn-flat"
+                id="edit-player-1-btn"
+                data-playerid="1"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-flat btn-reset"
+                id="reset-player-1-btn"
+                data-playerid="1"
+              >
+                Reset
+              </button>
             </article>
           </li>
           <li>
             <article id="player-2-data">
               <h2>Player 2</h2>
-              <h3>PLAYER NAME 2</h3>
+              <h3>-</h3>
               <p class="player-symbol">O</p>
-              <button class="btn btn-flat" id="edit-player-2-btn" data-playerid="2">Edit</button>
+              <button
+                class="btn btn-flat"
+                id="edit-player-2-btn"
+                data-playerid="2"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-flat btn-reset"
+                id="reset-player-2-btn"
+                data-playerid="2"
+              >
+                Reset
+              </button>
             </article>
           </li>
         </ol>
         <button class="btn" id="start-new-game-button">Start New Game</button>
+        <p class="error">
+          <strong>Error!</strong> Please enter valid player names for both
+          players!
+        </p>
       </section>
       <section id="gameplay">
         <article id="game-over">
@@ -73,19 +132,21 @@
           <p>Click "Start New Game" above, to start a new game!</p>
         </article>
 
-        <p>It's your turn <span id="active-player-name">PLAYER NAME</span>!</p>
+        <p id="player-turn-text">
+          It's your turn, <span id="active-player-name">PLAYER NAME</span>!
+        </p>
         <ol id="game-board">
-          <li></li>
-          <li></li>
-          <li></li>
+          <li data-col="1" data-row="1"></li>
+          <li data-col="2" data-row="1"></li>
+          <li data-col="3" data-row="1"></li>
 
-          <li></li>
-          <li></li>
-          <li></li>
+          <li data-col="1" data-row="2"></li>
+          <li data-col="2" data-row="2"></li>
+          <li data-col="3" data-row="2"></li>
 
-          <li></li>
-          <li></li>
-          <li></li>
+          <li data-col="1" data-row="3"></li>
+          <li data-col="2" data-row="3"></li>
+          <li data-col="3" data-row="3"></li>
         </ol>
       </section>
     </main>
