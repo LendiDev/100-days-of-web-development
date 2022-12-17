@@ -4,12 +4,13 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon nodemon -e js,ejs,html,json app.js"
   },
   "keywords": [],
   "author": "Nikita Lendiak",
   "license": "MIT",
   "dependencies": {
+    "ejs": "^3.1.8",
     "express": "^4.17.1"
   },
   "devDependencies": {
