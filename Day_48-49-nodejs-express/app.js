@@ -17,9 +17,12 @@ const getServerTimestamp = () => {
 app.get('/', (_, res) => {
   res.send(`<h1>Welcome!</h1>
   <p>GET <b>/current-time</b> - shows current server time (as UNIX timestamp)</p>
-  <p>GET <b>/form</b> - HTML form handling example</p>
+  <p>GET <b>/form</b> - HTML form handling example to store usernames</p>
+  <p>POST <b>/store-user</b> - stores username in the file</p>
+  <p>GET <b>/users</b> - shows all stored usernames</p>
+  <br><hr>
   <p>GET <b>/kill</b> - ⚠️ Kills ☠️ server in 5 seconds</p>
-  <p>POST <b>/store-user</b> - stores username in the file</p>`);
+  `);
 });
 
 app.get('/form', (req, res) => {
@@ -38,7 +41,7 @@ app.post('/store-user', (req, res) => {
     // format data to JSON
     const existingUsers = JSON.parse(usersData);
     // add new username
-    existingUsers.push({userName});
+    existingUsers.push({ userName });
 
     // write new JSON to file
     fs.writeFileSync(usersDataFile, JSON.stringify(existingUsers));
@@ -47,7 +50,22 @@ app.post('/store-user', (req, res) => {
   } else {
     res.send('Username is not specified');
   }
-})
+});
+
+app.get('/users', (req, res) => {
+  const usersDataFile = path.join(__dirname, 'data', 'users.json');
+
+  const usersData = fs.readFileSync(usersDataFile);
+  const existingUsers = JSON.parse(usersData);
+
+  let responseData = '<h1>All users: </h1><ul>'
+  for (let user of existingUsers) {
+    responseData += `<li>${user.userName}</li>`;
+  }
+  responseData += '</ul>'
+
+  res.send(responseData);
+});
 
 app.get('/current-time', (req, res) => {
   res.send('Current server time: ' + getServerTimestamp());
