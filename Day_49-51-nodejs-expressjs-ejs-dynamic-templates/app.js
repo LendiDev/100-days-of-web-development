@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const uuid = require('uuid');
 
 const PORT = 3000;
 const app = express();
@@ -29,6 +30,8 @@ app.get('/recommend', (req, res) => {
 
 app.post('/recommend', (req, res) => {
   const restaurant = req.body;
+  restaurant.id = uuid.v4();
+
   const filePath = path.join(__dirname, 'data', 'restaurants.json');
 
   const fileData = fs.readFileSync(filePath);
@@ -48,5 +51,30 @@ app.get('/restaurants', (req, res) => {
 
   res.render('restaurants', { numberOfRestaurants: storedRestaurants.length, restaurants: storedRestaurants });
 });
+
+app.get('/restaurants/:id', (req, res) => {
+  const restaurantId = req.params.id;
+
+  const filePath = path.join(__dirname, 'data', 'restaurants.json');
+
+  const fileData = fs.readFileSync(filePath);
+  const storedRestaurants = JSON.parse(fileData);
+
+  const restaurant = storedRestaurants.find((item) => item.id === restaurantId);
+
+  if (restaurant) {
+    res.render('restaurant-details', { restaurant });
+  } else {
+    res.render('404');
+  }
+});
+
+app.get('/404', (req, res) => {
+  res.render('404');
+});
+
+app.use((req, res) => {
+  res.render('404');
+})
 
 app.listen(PORT);
