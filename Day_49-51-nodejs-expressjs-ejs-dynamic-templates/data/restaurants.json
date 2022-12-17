@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Italian Restaurant",
+    "address": "Italy",
+    "cuisine": "Italian",
+    "website": "https://properitalian.com",
+    "description": "It's the best!"
+  },
+  {
+    "name": "Mexican Restaurant",
+    "address": "Mexico",
+    "cuisine": "Mexican",
+    "website": "https://tastymexican.com",
+    "description": "Good Mexican restaurant in Mexico!"
+  },
+  {
+    "name": "Indian Restaurant",
+    "address": "India",
+    "cuisine": "Indian",
+    "website": "https://tastyindianrestaurant.com",
+    "description": "Yummy Indian meals!"
+  }
+]
