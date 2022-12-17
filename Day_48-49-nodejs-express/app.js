@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const { exit } = require('process');
 
@@ -24,6 +26,33 @@ app.get('/form', (req, res) => {
   res.send('<form action="/store-user" method="POST"><label>Your username</label><br><input name="username" type="text"/><br><button>Submit</button></form><br><br>');
 });
 
+app.post('/store-user', (req, res) => {
+  const userName = req.body.username;
+
+  if (userName) {
+    // path to file
+    const usersDataFile = path.join(__dirname, 'data', 'users.json');
+
+    // open existing user data file
+    const usersData = fs.readFileSync(usersDataFile);
+    // format data to JSON
+    const existingUsers = JSON.parse(usersData);
+    // add new username
+    existingUsers.push({userName});
+
+    // write new JSON to file
+    fs.writeFileSync(usersDataFile, JSON.stringify(existingUsers));
+
+    res.send(`<p>Username <strong>${userName}</strong> stored!</p>`);
+  } else {
+    res.send('Username is not specified');
+  }
+})
+
+app.get('/current-time', (req, res) => {
+  res.send('Current server time: ' + getServerTimestamp());
+});
+
 app.get('/kill', (req, res) => {
 
   res.send('Server will be killed in 5 seconds...');
@@ -31,22 +60,6 @@ app.get('/kill', (req, res) => {
   setTimeout(() => {
     exit(1);
   }, 5000);
-});
-
-app.post('/store-user', (req, res) => {
-  const userName = req.body.username;
-
-  if (userName) {
-    // TODO: handle username(s) saving to the file;
-    res.send(`coming soon...`);
-    // res.send(`<p>Username <strong>${userName}</strong> stored!</p>`);
-  } else {
-    res.send('no name specified');
-  }
-})
-
-app.get('/current-time', (req, res) => {
-  res.send('Current server time: ' + getServerTimestamp());
 });
 
 app.listen(PORT);
