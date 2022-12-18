@@ -7,8 +7,20 @@ const router = express.Router();
 
 router.get('/restaurants', (req, res) => {
   const restaurants = getStoredRestaurants();
+  let order = req.query.order;
+  const nextOrder = order === 'asc' ? 'desc' : 'asc';
 
-  res.render('restaurants', { numberOfRestaurants: restaurants.length, restaurants: restaurants });
+  if (order) {
+    if (order === 'asc') {
+      // asc sort
+      restaurants.sort((itemA, itemB) => itemA.name > itemB.name ? 1 : -1);
+    } else {
+      // desc sort
+      restaurants.sort((itemA, itemB) => itemA.name < itemB.name ? 1 : -1);
+    }
+  }
+
+  res.render('restaurants', { numberOfRestaurants: restaurants.length, restaurants: restaurants, nextOrder: nextOrder });
 });
 
 router.get('/restaurants/:id', (req, res) => {
