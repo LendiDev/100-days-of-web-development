@@ -8,16 +8,24 @@
 
 <body>
   <%- include('includes/header') %>
-  <main id="post-detail">
-    <h1>...</h1>
-    <section id="post-meta">
-      ...
-    </section>
-    <hr>
-    <section>
-      <p id="body">...</p>
-    </section>
-  </main>
+  <% if (post) { %>
+    <main id="post-detail">
+      <h1><%= post.title %></h1>
+      <section id="post-meta">
+        <strong><%= post.author_name %></strong> | published date: <em><%= new Date(post.date).toISOString().replace(/T/, ' ').replace(/\..+/, '') %></em>
+      </section>
+      <hr>
+      <section>
+        <p id="body"><%= post.body %></p>
+      </section>
+    </main>
+  <% } else { %>
+    <main>
+      <h1>Oops, post not found!</h1>
+      <p>Unfortunately, we are unable to find blog post!</p>
+      <a class="btn" href="/">Back To Safety!</a>
+    </main>
+  <% } %>
 </body>
 
 </html>
