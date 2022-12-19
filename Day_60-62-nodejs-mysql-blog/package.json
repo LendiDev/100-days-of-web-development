@@ -4,14 +4,16 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon -e ejs,js,html,css,json app.js"
   },
   "keywords": [],
   "author": "Nikita Lendiak",
   "license": "MIT",
   "dependencies": {
-    "ejs": "^3.1.6",
-    "express": "^4.17.1"
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
