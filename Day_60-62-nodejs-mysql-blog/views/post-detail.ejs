@@ -2,30 +2,23 @@
 <html lang="en">
 
 <head>
-  <%- include('includes/head', { title: 'Post title' }) %>
+  <%- include('includes/head', { title: post.title }) %>
   <link rel="stylesheet" href="/styles/posts.css">
 </head>
 
 <body>
   <%- include('includes/header') %>
-  <% if (post) { %>
-    <main id="post-detail">
-      <h1><%= post.title %></h1>
-      <section id="post-meta">
-        <strong><%= post.author_name %></strong> | published date: <em><%= new Date(post.date).toISOString().replace(/T/, ' ').replace(/\..+/, '') %></em>
-      </section>
-      <hr>
-      <section>
-        <p id="body"><%= post.body %></p>
-      </section>
-    </main>
-  <% } else { %>
-    <main>
-      <h1>Oops, post not found!</h1>
-      <p>Unfortunately, we are unable to find blog post!</p>
-      <a class="btn" href="/">Back To Safety!</a>
-    </main>
-  <% } %>
+  <main id="post-detail">
+    <h1><%= post.title %></h1>
+    <section id="post-meta">
+      <address><a href="mailto:<%= post.author_email %>"><strong><%= post.author_name %></strong></a></address>
+      <em><time datetime="<%= post.date %>"><%= post.formattedDate %></time></em>
+    </section>
+    <hr>
+    <section>
+      <p id="body"><%= post.body %></p>
+    </section>
+  </main>
 </body>
 
 </html>
