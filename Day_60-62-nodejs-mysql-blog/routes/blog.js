@@ -20,7 +20,7 @@ router.get('/posts', async (req, res) => {
 
   try {
     const [posts] = await db.query(query);
-    res.render('posts-list', { posts } );
+    res.render('posts-list', { posts });
   } catch (e) {
     res.render('500');
   }
@@ -29,18 +29,85 @@ router.get('/posts', async (req, res) => {
 router.get('/posts/:post_id', async (req, res) => {
   const postId = req.params.post_id;
   const query = `
-    SELECT posts.*, authors.name AS author_name, authors.email FROM posts 
+    SELECT posts.*, authors.name AS author_name, authors.email AS author_email FROM posts 
     INNER JOIN authors 
-    WHERE posts.author_id = authors.id AND posts.id = ${postId}
-  `;
+    WHERE posts.author_id = authors.id AND posts.id = ?
+    `;
 
   try {
-    const [post] = await db.query(query);
-    res.render('post-detail', { post: post[0] } );
+    const [post] = await db.query(query, [postId]);
+
+    if (!post || post.length === 0) {
+      return res.status(404).render('404');
+    }
+
+    const postData = {
+      ...post[0],
+      date: post[0].date.toISOString(),
+      formattedDate: post[0].date.toLocaleDateString(),
+    }
+
+    res.render('post-detail', { post: postData });
   } catch (e) {
-    res.render('500');
+    console.log(e);
+    res.status(500).render('500');
   }
 });
+
+router.get('/posts/:post_id/edit', async (req, res) => {
+  const postId = req.params.post_id;
+  const query = `
+    SELECT * FROM posts 
+    WHERE id = ?
+    `;
+
+  try {
+    const [post] = await db.query(query, [postId]);
+
+    if (!post || post.length === 0) {
+      return res.status(404).render('404');
+    }
+
+    res.render('update-post', { post: post[0] })
+  } catch (e) {
+    console.log(e);
+    res.status(500).render('500');
+  }
+});
+
+router.post('/posts/:post_id/edit', async (req, res) => {
+  const postId = req.params.post_id;
+  const reqBody = req.body;
+  const query = `
+    UPDATE posts SET title = ?, summary = ?, body = ?
+    WHERE posts.id = ?
+    `;
+  const params = [reqBody.title, reqBody.summary, reqBody.content, postId];
+
+  try {
+    await db.query(query, params);
+
+    res.redirect(`/posts`);
+  } catch (e) {
+    console.log(e);
+    res.status(500).render('500');
+  }
+});
+
+router.post('/posts/:post_id/delete', async (req, res) => {
+  const postId = req.params.post_id;
+  const query = `
+    DELETE FROM posts WHERE id = ?
+  `
+
+  try {
+    await db.query(query, [postId]);
+    res.redirect(`/posts`);
+  } catch (e) {
+    console.log(e);
+    res.status(500).render('500');
+  }
+}); 
 
 router.post('/posts', async (req, res) => {
   const requestData = [
