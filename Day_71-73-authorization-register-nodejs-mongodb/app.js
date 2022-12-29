@@ -29,6 +29,19 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(sessionsMiddleware);
+app.use(async (req, res, next) => {
+  const sessionUserData = req.session.user;
+  const isAuth = req.session.isAuth;
+
+  if (!isAuth || !sessionUserData) {
+    return next();
+  }
+  const user = await db.getDb().collection('users').findOne({ _id: sessionUserData.id });
+
+  res.locals.isAdmin = user.isAdmin;
+  res.locals.isAuth = isAuth;
+  next();
+})
 
 app.use(demoRoutes);
 

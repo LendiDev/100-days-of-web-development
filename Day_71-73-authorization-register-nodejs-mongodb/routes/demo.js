@@ -28,7 +28,21 @@ router.get('/signup', function (req, res) {
 });
 
 router.get('/login', function (req, res) {
-  res.render('login');
+  let sessionInputData = req.session.inputData;
+
+  if (!sessionInputData) {
+    sessionInputData = {
+      isError: false,
+      errorMessage: '',
+      email: '',
+      confirmEmail: '',
+      password: '',
+    };
+  }
+
+  req.session.inputData = null;
+
+  res.render('login', { inputData: sessionInputData });
 });
 
 router.post('/signup', async function (req, res) {
@@ -69,13 +83,15 @@ router.post('/signup', async function (req, res) {
         confirmEmail: enteredConfirmationEmail,
         password: enteredPassword,
       }
-
-      return res.redirect('/signup');
+      req.session.save(() => {
+        res.redirect('/signup');
+      });
+      return;
     }
 
   } catch (e) {
     console.log(e);
-    return res.redirect('/signup');
+    return res.status(500).render('500');
   }
 
   const encryptedPassword = await bcryptjs.hash(enteredPassword, 12);
@@ -93,7 +109,7 @@ router.post('/signup', async function (req, res) {
       req.session.isAuth = true;
 
       req.session.save(() => {
-        res.redirect('/admin');
+        res.redirect('/profile');
       })
     }
 
@@ -107,34 +123,66 @@ router.post('/login', async function (req, res) {
   const enteredEmail = req.body.email;
   const enteredPassword = req.body.password;
 
-  const existingUser = await db.getDb().collection('users').findOne({ email: enteredEmail });
+  try {
+    const existingUser = await db.getDb().collection('users').findOne({ email: enteredEmail });
 
-  if (!existingUser) {
-    console.log("User doesn't exist");
-    return res.redirect('/login');
+    if (!existingUser) {
+      req.session.inputData = {
+        isError: true,
+        errorMessage: `Wrong credentials! (${enteredEmail} doesn't exist)`,
+        email: enteredEmail,
+        password: enteredPassword,
+      }
+
+      req.session.save(() => {
+        res.redirect('/login');
+      })
+
+      return;
+    }
+
+    const passwordsAreMatching = await bcryptjs.compare(enteredPassword, existingUser.password);
+
+    if (!passwordsAreMatching) {
+      req.session.inputData = {
+        isError: true,
+        errorMessage: 'Wrong credentials! (wrong password)',
+        email: enteredEmail,
+        password: enteredPassword,
+      }
+
+      req.session.save(() => {
+        res.redirect('/login');
+      })
+
+      return;
+    }
+
+    req.session.user = { id: existingUser._id, email: existingUser.email }
+    req.session.isAuth = true;
+
+    req.session.save(() => {
+      res.redirect('/profile');
+    });
+
+  } catch (e) {
+    console.log(e);
+    return res.status(500).render('500');
   }
-
-  const passwordsAreMatching = await bcryptjs.compare(enteredPassword, existingUser.password);
-
-  if (!passwordsAreMatching) {
-    console.log("Passwords are not matching");
-    return res.redirect('/login');
-  }
-
-  req.session.user = { id: existingUser._id, email: existingUser.email }
-  req.session.isAuth = true;
-
-  req.session.save(() => {
-    res.redirect('/admin');
-  });
 });
 
-router.get('/admin', function (req, res) {
-  if (!req.session.isAuth) {
-    return res.status(401).render('401');
-  }
+router.get('/admin', async function (req, res) {
+  if (!res.locals.isAuth) return res.status(401).render('401');
+  if (!res.locals.isAdmin) return res.status(403).render('403');
+
   res.render('admin');
 });
+
+router.get('/profile', function (req, res) {
+  if (!res.locals.isAuth) return res.status(401).render('401');
+  res.render('profile');
+});
+
 
 router.post('/logout', function (req, res) {
   req.session.user = null;
