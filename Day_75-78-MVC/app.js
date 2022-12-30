@@ -7,6 +7,7 @@ const csrf = require('csurf');
 const sessionConfig = require('./config/sessions');
 const db = require('./data/database');
 const authMiddleware = require('./middlewares/auth.middleware');
+const csrfTokenMiddleware = require('./middlewares/csrf-token.middleware');
 
 const authRoutes = require('./routes/auth');
 const blogRoutes = require('./routes/blog');
@@ -24,14 +25,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(session(sessionConfig.createSessionConfig(mongoDbSessionStore)));
 app.use(csrf());
 
+app.use(csrfTokenMiddleware);
 app.use(authMiddleware);
 
 app.use(authRoutes);
 app.use(blogRoutes);
 
-app.use(function(error, req, res, next) {
+app.use(function (error, req, res, next) {
   res.render('500');
-})
+});
+
+app.use('*', (req, res) => {
+  res.render('404');
+});
 
 db.connectToDatabase().then(function () {
   app.listen(3000);
