@@ -9,7 +9,7 @@ router.get('/admin', BlogControllers.getAdmin);
 router.get('/posts/:id/edit', BlogControllers.getSinglePost);
 
 router.post('/posts', BlogControllers.createPost);
-router.post('/posts/:id/edit', BlogControllers.editPost);
+router.post('/posts/:id/edit', BlogControllers.editPost); 
 router.post('/posts/:id/delete', BlogControllers.deletePost);
 
 module.exports = router;
