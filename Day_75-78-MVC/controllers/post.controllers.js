@@ -7,7 +7,6 @@ const getHome = (req, res) => {
 };
 
 const getAdmin = async (req, res) => {
-  if (!res.locals.isAuth) return res.status(401).render("401");
 
   const posts = await Post.fetchAll();
 
@@ -23,12 +22,17 @@ const getAdmin = async (req, res) => {
   });
 };
 
-const getSinglePost = async (req, res) => {
-  const post = new Post(null, null, req.params.id);
+const getSinglePost = async (req, res, next) => {
+  let post;
+  try {
+    post = new Post(null, null, req.params.id);
+  } catch(e) {
+    return res.status(404).render("404");
+  }
+
   await post.fetch();
 
-  // 404.ejs is missing at this point - it will be added later!
-  if (!post.title || !post.content) return res.render("404");
+  if (!post.title || !post.content) return res.status(404).render("404");
   
   const sessionErrorData = validationSession.getSessionErrorData(req, {
     title: post.title,

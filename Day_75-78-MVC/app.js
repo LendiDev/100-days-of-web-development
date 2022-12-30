@@ -32,8 +32,12 @@ app.use(authRoutes);
 app.use(blogRoutes);
 
 app.use(function (error, req, res, next) {
-  res.render('500', { csrfToken: req.csrfToken() });
-})
+  res.render('500');
+});
+
+app.use('*', (req, res) => {
+  res.render('404');
+});
 
 db.connectToDatabase().then(function () {
   app.listen(3000);

@@ -140,10 +140,15 @@ const logout = (req, res) => {
   res.redirect("/");
 };
 
+const get401 = (req, res) => {
+  res.status(401).render("401");
+}
+
 module.exports = {
   getSignup,
   getLogin,
   signup,
   login,
   logout,
+  get401
 };
